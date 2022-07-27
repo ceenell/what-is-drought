@@ -49,8 +49,39 @@ p2_targets <- list(
   ###### Load drought properties ######
   tar_target(p2_1951_2020_drought_prop_site,
              readr::read_csv(p1_1951_2020_drought_prop_site_csv, col_types = cols()) %>%
-              mutate(across(c(start, end), ~as.Date(.x, '%Y-%m-%d')))
+              mutate(across(c(start, end), ~as.Date(.x, '%Y-%m-%d')))%>%
+               left_join(p2_1951_2020_metadata %>%
+                           select(StaID:STATE, HCDN_2009, CASC))
              ),
+  tar_target(p2_site_long,
+             # add a row for EVERY DAY with drought
+             p2_1951_2020_drought_prop_jd_30d %>% 
+               select(drought_id, start, end, threshold, StaID, CASC) %>%
+               mutate(duration = as.numeric(end-start)) %>%
+               rowwise() %>%
+               mutate(date = list(seq.Date(start, end, by = '1 day'))) %>%
+               unnest(date) %>%
+               select(-start, -end)
+             ),
+  tar_target(
+    thresholds,
+    unique(p2_1951_2020_drought_prop_site$threshold)
+  ),
+  tar_target(
+    years,
+    seq(1950, 2020, by = 1)
+  ),
+  tar_target(p2_site_daily,
+             # aggregate number of sites in drought by threshold
+             p2_site_long %>%
+               mutate(year = lubridate::year(date)) %>%
+               filter(year == years) %>%
+               group_by(CASC, date, threshold) %>%
+               summarize(sites = length(unique(StaID))) %>%
+               mutate(yday = lubridate::yday(date),
+                      year = lubridate::year(date)),
+             pattern = map(years)
+  ),
   tar_target(p2_site_prop_2,
              # Filter to 2 threshold
              p2_1951_2020_drought_prop_jd_7d %>%
@@ -61,9 +92,15 @@ p2_targets <- list(
   tar_target(p2_1951_2020_drought_prop_jd,
              readr::read_csv(p1_1951_2020_drought_prop_jd_csv, col_types = cols())),
   tar_target(p2_1951_2020_drought_prop_jd_7d,
-             readr::read_csv(p1_1951_2020_drought_prop_jd_7d_csv, col_types = cols())),
+             readr::read_csv(p1_1951_2020_drought_prop_jd_7d_csv, col_types = cols())%>%
+             mutate(across(c(start, end), ~as.Date(.x, '%Y-%m-%d')))%>%
+               left_join(p2_1951_2020_metadata %>%
+                           select(StaID:STATE, HCDN_2009, CASC))),
   tar_target(p2_1951_2020_drought_prop_jd_30d,
-             readr::read_csv(p1_1951_2020_drought_prop_jd_30d_csv, col_types = cols())),
+             readr::read_csv(p1_1951_2020_drought_prop_jd_30d_csv, col_types = cols())%>%
+               mutate(across(c(start, end), ~as.Date(.x, '%Y-%m-%d')))%>%
+               left_join(p2_1951_2020_metadata %>%
+                           select(StaID:STATE, HCDN_2009, CASC))),
   tar_target(p2_site_swarm,
              # 
              create_event_swarm(event_data = p2_site_prop_2,
