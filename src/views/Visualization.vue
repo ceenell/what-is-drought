@@ -24,13 +24,8 @@ export default {
 #visualization {
   //height: calc(100vh);
   margin: 2.5%;
-  //width: 95%;
-  //margin-top: 0;
+  position: relative;
 
 }
 
-#title-container {
-  position: fixed;
-  //top: 0;
-}
 </style>

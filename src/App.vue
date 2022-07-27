@@ -87,7 +87,7 @@ body {
       padding: 0;
       line-height: 1.2;
       font-size: 16px;
-      font-weight: 400;
+      font-weight: 300;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       width: 100%;
@@ -274,7 +274,8 @@ sup {
 .sticky-header {
   position: fixed;
   top: 0;
-  background-color: blue;
+  left: 0;
+  width: 100vw;
 }
 
 </style>
