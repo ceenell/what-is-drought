@@ -73,7 +73,7 @@ import { store } from '../store/store.js'
 import { isMobile } from 'mobile-device-detect';
 import { ScrollTrigger } from "gsap/ScrollTrigger"; // animated scroll events
 import { TimelineMax } from "gsap/all";
-
+import scrollyText from "@/assets/text/scrollyText";
 export default {
   name: "DroughtThresholds",
     components: {
@@ -84,6 +84,7 @@ export default {
       return {
         publicPath: process.env.BASE_URL, // allows the application to find the files when on different deployment roots
         mobileView: isMobile, // test for mobile
+        text: scrollyText.frames // scolly text
 
         // dimensions
         w: store.state.windowWidth,
