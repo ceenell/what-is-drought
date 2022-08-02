@@ -84,7 +84,7 @@ export default {
       return {
         publicPath: process.env.BASE_URL, // allows the application to find the files when on different deployment roots
         mobileView: isMobile, // test for mobile
-        text: scrollyText.frames // scolly text
+        text: scrollyText.frames, // scolly text
 
         // dimensions
         w: store.state.windowWidth,
