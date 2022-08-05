@@ -58,12 +58,8 @@ p2_targets <- list(
              readr::read_csv(p1_1951_2020_drought_prop_jd_7d_csv, col_types = cols())),
   tar_target(p2_1951_2020_drought_prop_jd_30d,
              readr::read_csv(p1_1951_2020_drought_prop_jd_30d_csv, col_types = cols())),
-  tar_target(p2_site_swarm,
-             create_event_swarm(event_data = p2_site_prop_2,
-                                start_period = as.Date('2000-01-01'),
-                                end_period = as.Date('2020-12-31'))),
   
-  ## Prep drought properties for "strip swarm" chart
+  ## Prep drought properties for "strip swarm" duration chart
   tar_target(p2_site_prop_2,
              # Filter to 2 threshold for now
              p2_1951_2020_drought_prop_site %>%
@@ -71,6 +67,11 @@ p2_targets <- list(
                left_join(p2_1951_2020_metadata %>%
                            select(StaID:STATE, HCDN_2009, CASC))
   ),
+  ## Processing data in 2 temporal chunks, processing swarm is slow (~20 min)
+  tar_target(p2_site_swarm,
+             create_event_swarm(event_data = p2_site_prop_2,
+                                start_period = as.Date('2000-01-01'),
+                                end_period = as.Date('2020-12-31'))),
   tar_target(p2_site_swarm_80s,
              create_event_swarm(event_data = p2_site_prop_2,
                                 start_period = as.Date('1980-01-01'),
