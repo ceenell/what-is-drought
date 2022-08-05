@@ -1,10 +1,11 @@
 <template>
   <div class="another-container">
-    <div class="chart-container">
-      <div id="title-container">
+    <div id="title-container">
         <h2>40 years of drought</h2>
       </div>
-      <div id="container">
+    <div class="chart-container">
+    <div id="container">
+
         <div class="module green"></div>
         <div class="module yellow"></div>
         <div class="module purple"></div>
@@ -88,69 +89,18 @@ img {
 #title-container {
   position: fixed;
 }
-#scroll-container {
-  z-index: 200;
-}
-.text-container {
-  z-index: 500;
-  border-radius: 25px;
-  background-color: #333534;
-  max-width: 400px;
-  p{
-    padding: 25px;
-  }
-}
-.hydro-chart {
-  height: auto;
-  margin-top: 10%;
-  margin-left: 10%;
-  background-color: white;
-  max-height: 700px;
-    max-width: 1000px;
-    opacity: 0;
-    width: 65vw;
-}
 
-// stacking all images and using toogleClass to change visibility with scrolling
-.hydro-chart {
-  position: fixed;
-  top: 10%;
-  left: 35vh;
-  @media screen and (max-width: 600px) {
-    top: 25%;
-  }
-}
 .chart-container {
-  //background-position: top;
   height: 85vh;
   max-height: 700px;
-  width: 50vw;
-  position: relative;
+  width: auto;
+  position: fixed;
   top:10vh;
   left: 0vh;
   margin-bottom: 5%;
   max-width: 800px;
 }
-// currently empty scoll-by divs used to trigger animation
-.scrolly {
-  height: 100vh;
-   z-index: 100;
-  p {
-    max-width: 700px;
-    color: white;
-  }
-}
-.onTop {
-  visibility: visible;
-  z-index: 10;
-  opacity: 1;
-}
-#spacer {
-  height: 30vh;
-}
-.unstuck {
-  position: relative;
-}
+
 body {
   overflow-x: hidden;
 }
@@ -160,7 +110,7 @@ body {
   display:flex;
   flex-wrap:wrap;
   flex-direction:column;
-  height:100vh;
+  height:100%;
 }
 
 .module{
@@ -170,31 +120,32 @@ body {
 
 .green{
   width:500px;
-  background-color:green;
+  background-color:rgb(177, 225, 236);
+  opacity: 0.4;
 }
 
 .yellow{
   width:1300px;
-  background-color:yellow;
+  background-color:rgb(223, 191, 245);
+  opacity: 0.4;
 }
 
 .purple{
   width:800px;
-  background-color:purple;
+  background-color:rgb(253, 183, 186);
+  opacity: 0.4;
 }
 
 .orange{
   width:800px;
-  background-color:purple;
+  background-color:rgb(252, 221, 153);
+  opacity: 0.4;
 }
 
 .blue{
   width:2100px;
-  background-color:blue;
+  background-color:rgb(199, 255, 188);
+  opacity: 0.4;
 }
 
-.red{
-  width:900px;
-  background-color:red;
-}
 </style>

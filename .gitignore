@@ -71,3 +71,4 @@ sb.vault/users/*
 !sb.vault/users/README
 
 node_modules
+node_modules

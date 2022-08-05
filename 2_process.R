@@ -94,7 +94,7 @@ p2_targets <- list(
   tar_target(p2_1951_2020_streamflow_perc,
              purrr::map_df(p2_1951_2020_streamflow_perc_file_tibble$flow_perc_fl, ~readr::read_csv(.x, col_types=cols()))),
   
-  ###### Process data for the drought learner viz ######
+  ###### Process data for the drought learner viz ####
   # The df that has the drought properties by method (variable vs fixed)
   tar_target(p2_droughts_learner_viz_df,
              prep_drought_df_lrnr_viz(StationID = '03221000',
