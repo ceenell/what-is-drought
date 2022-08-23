@@ -27,6 +27,7 @@ export default {
   //height: calc(100vh);
   margin: 2.5%;
   position: relative;
+  top: 65px;
 
 }
 
