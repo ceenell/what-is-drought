@@ -1,9 +1,9 @@
 <template>
   <div class="another-container">
-    <div class="chart-container">
-      <div id="title-container">
-        <h2>What is hydrological drought?</h2>
+          <div id="title-container">
+        <h2>What is streamflow drought?</h2>
       </div>
+    <div class="chart-container">
       <!-- read in frames dynamically -->
       <img
         v-for="frame in frames" 
@@ -104,20 +104,22 @@ export default {
 // handwriting font
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap');
 $writeFont: 'Nanum Pen Script', cursive;
+
 // frames are stacked and class is added on an off w/ scroll trigger to bring to front
 img {
   max-width: 80vw;
 }
 #title-container {
   position: fixed;
+  top: calc(100vh-65px);
 }
 #scroll-container {
   z-index: 200;
 }
 .text-container {
   z-index: 500;
-  border-radius: 25px;
-  background-color: #333534;
+  border-radius: 10px;
+  background-color: #cbd1ce;
   max-width: 400px;
   p{
     padding: 25px;
@@ -125,34 +127,40 @@ img {
 }
 .hydro-chart {
   height: auto;
-  margin-top: 10%;
   margin-left: 10%;
   background-color: white;
-  max-height: 700px;
-    max-width: 1000px;
+  max-height: 70vh;
     opacity: 0;
-    width: 65vw;
+    width: 75vw;
 }
 
 // stacking all images and using toogleClass to change visibility with scrolling
 .hydro-chart {
   position: fixed;
-  top: 10%;
-  left: 35vh;
-  @media screen and (max-width: 600px) {
+  top: 25%;
+  margin: auto;
+  //margin-left: 7.5vw;
+  left: 35vw;
+  max-width: 60vw;
+  height: auto;
+  @media screen and (min-width: 600px) {
     top: 25%;
   }
 }
 .chart-container {
-  //background-position: top;
   height: 85vh;
   max-height: 700px;
   width: 50vw;
   position: relative;
-  top:10vh;
+  top: calc(100vh-65px);
   left: 0vh;
   margin-bottom: 5%;
   max-width: 800px;
+}
+#step-a {
+    visibility: visible;
+  z-index: 10;
+  opacity: 1;
 }
 // currently empty scoll-by divs used to trigger animation
 .scrolly {
@@ -160,7 +168,7 @@ img {
    z-index: 100;
   p {
     max-width: 700px;
-    color: white;
+    color: black;
   }
 }
 .onTop {

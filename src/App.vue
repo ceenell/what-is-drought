@@ -74,6 +74,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@200;300;400;500;600;700;800&display=swap');
 $SourceSans: 'Source Sans Pro', sans-serif;
 $textcolor: #333534;
+$darkGrey: #212122;
+$familyMain: 'Public sans', sans-serif;
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&display=swap');
 $writeFont: 'Nanum Pen Script', cursive;
 // whole page except header fit within viewport - no scrolling
@@ -115,12 +117,13 @@ h2{
   font-weight: 700;
   text-align: left;
   font-family: $SourceSans;
-  font-size: 3.75em;
-  margin-top: 5px;
+  font-size: 3.5em;
+  margin-top: 25px;
   line-height: 1.2;
     color: $textcolor;
+    max-width: 95vw;
   @media screen and (max-width: 600px) {
-    font-size: 3em;
+    font-size: 1.75em;
   }
 }
 h3{
@@ -141,6 +144,19 @@ p, text {
 input[type=button] {
         font-family: $SourceSans;
     }
+    
+.text-content h2 {
+  color: $darkGrey;
+  font-weight: 600;
+  text-align: left;
+  font-family:$familyMain;
+  font-size: 1.3em;
+  margin-top: 5px;
+  line-height: 1.2;
+  @media screen and (max-width: 600px) {
+    font-size: 2em;
+  }
+}
 
 // General Layout  
   section {
